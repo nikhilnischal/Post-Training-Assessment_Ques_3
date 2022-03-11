@@ -1,0 +1,14 @@
+You have deployed an application, that is listening at port 8000. 
+You used a replica-set to deploy it and created a NodePort service to make it accessible. 
+But when you test it, somehow the application is not reachable at the port. 
+Write down your approach and sequentially all the steps that you will take to find out the issue.
+
+
+--->
+#### Assuming namespace as default in this case
+1. Check the specific replica-set is up and running. (kubectl get rs )
+2. Check the service exposed for the pod (kubectl get svc and then kubectl describe svc <service-name> and look after the TargetPort assigned to 8000 or not.
+3. Check the NodePort - must be in range of 32000 to 32767
+4. If these are not working, we can try port forwarding (kubectl port-forward svc <svc-name> 80:8080
+5. Still having issue, will refer the kubernetes documentation section
+
